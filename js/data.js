@@ -34,3 +34,37 @@ const arrayOfEmotions = [
 ];
 const stringOfLetters = "abcdefghijklmnopqrstuvwxyz";
 const maxWrongAnswers = 6;
+
+class GameState {
+    constructor(randomEmotionObject) {
+        this.guessedLetters = []; 
+        this.randomEmotionObject = randomEmotionObject;
+        this.numberOfMistakes = 0;
+    }
+
+    increaseNumberOfMistakes() {
+        this.numberOfMistakes++;
+    }
+
+    getNumberOfMistakes() {
+        return this.numberOfMistakes;
+    }
+
+    getRandomName() {
+        return this.randomEmotionObject.name;
+    }
+
+    getRandomHint() {
+        return this.randomEmotionObject.hint;
+    }
+
+    addNewGuessedLetter(letter) {
+        this.guessedLetters.push(letter);
+    }
+
+    getGuessedLetters() {
+        return this.guessedLetters;
+    }
+}
+
+let currentGameState;

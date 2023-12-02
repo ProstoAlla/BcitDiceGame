@@ -1,4 +1,4 @@
-function generateArrayOfLetters(stringOfLetters) {
+function generateArrayOfLetters() {
     let index = 0;
     let maxIndex = 9;
     let htmlOutPut = "<table>";
@@ -9,7 +9,7 @@ function generateArrayOfLetters(stringOfLetters) {
         };
         if (index < maxIndex) {
             let letter = arrayOfLetters[i];
-            htmlOutPut += `<td> <button id=${letter} onClick="handleClickOnLetter('${letter}')> ${letter} </button> </td>`;
+            htmlOutPut += `<td> <button id=${letter} onClick="handleClickOnLetter('${letter}')"> ${letter} </button> </td>`;
             index++
         } else {
             htmlOutPut += "</tr>";
@@ -21,35 +21,42 @@ function generateArrayOfLetters(stringOfLetters) {
     return htmlOutPut;
 }
 
-document.getElementById("letter-buttons-wrapper").innerHTML = generateArrayOfLetters(stringOfLetters);
-
-function getRandomEmotionObject(arrayOfEmotions){
+function getRandomEmotionObject(){
     let randomEmotionObject = arrayOfEmotions[Math.floor(Math.random()*arrayOfEmotions.length)];
     return randomEmotionObject;
 }
 
-function guessedWord(randomName, guessedLetters) {
-    let randomNameStatus = null;
+function guessedWord() {
+    const randomName = currentGameState.getRandomName();
+    const guessedLetters = currentGameState.getGuessedLetters();
+    let randomNameStatus = "<div>";
     let lettersArray = randomName.split('');
     for (var i=0; i<lettersArray.length; i++)
     {
         var letter = lettersArray[i];
-        if (guessedLetters.indexOf(letter)) {
-            randomNameStatus += letter;
+        if (guessedLetters.indexOf(letter) >= 0) {
+            randomNameStatus += (" " + letter + " ");
         } else {
-            randomNameStatus += "_";
+            randomNameStatus += " _ ";
         }
     }
-    return randomNameStatus;
+    return randomNameStatus + "</div>";
 }
 
-function handleClickOnLetter(selectedLetter, guessedLetters, randomName, numberOfMistakes) {
-    guessedLetters.push(selectedLetter);
+function handleClickOnLetter(selectedLetter) {
+    currentGameState.addNewGuessedLetter(selectedLetter);
     document.getElementById(selectedLetter).setAttribute('disabled', true);
-    if (randomName.indexOf(selectedLetter) >= 0) {
-        guessedWord(randomName, selectedLetter);
-        return numberOfMistakes;
+    if (currentGameState.getRandomName().indexOf(selectedLetter) >= 0) {
+        document.getElementById('hangman-word-section').innerHTML=guessedWord();
     } else {
-        return numberOfMistakes++;
+        currentGameState.increaseNumberOfMistakes();
     }
+    alert("Current state is " + currentGameState);
+    //TODO: add logic to check if game is done
+}
+
+function resetGame() {
+    document.getElementById("letter-buttons-wrapper").innerHTML = generateArrayOfLetters();
+    currentGameState = new GameState(getRandomEmotionObject());
+    document.getElementById('hangman-word-section').innerHTML=guessedWord();
 }

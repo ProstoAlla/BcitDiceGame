@@ -14,7 +14,7 @@
     <script src="js/data.js" defer="defer"></script>
     <script src="js/functions.js" defer="defer"></script>
     <!-- now we load the scripts that will invoke those functions -->
-    <script src="js/dicegame.js" defer="defer"></script>
+    <script src="js/hangmangame.js" defer="defer"></script>
 
     <title>comp2132FinalProjectHangman</title>
 </head>
@@ -39,66 +39,14 @@
                         <img id="hangman-image" src="images/image0.jpeg "
                             alt="hangman" width="250" height="300">
                     </section>
+                    <section id="hangman-word-section">
+                    </section>
                     <section id="letter-buttons-wrapper">
                     </section>
+                    <section id="hangman-reset-section">
+                        <button id="hangman-reset-btn" onClick="resetGame()">Start/Reset Game</button>
+                    </section>
                 </section>
-
-                <form >
-                    <fieldset>
-                        <div id="input-price" class="input">
-                            <label for="price">Price: </label>
-                            <output id="price">$ 20.00</output><br>
-                            <label for="quantityId">Quantity: </label>
-                            <input type="number" id="quantityId" name="quantity" value="1" min="1"><br>
-                            <label for="total">Total: $</label>
-                            <output id="total">20.00</output><br>
-                        </div>
-
-
-                        <div id="input-color" class="input">
-                            <label>
-                                <div id="color-main">Color: Black</div>
-                            </label>
-                            <div class="color">
-                                <div class="black">
-                                    <input type="radio" value="black" id="black" name="color" required checked />
-                                    <label for="black" class="radio">Black</label>
-                                </div>
-                                <div class="red">
-                                    <input type="radio" value="red" id="red" name="color" required />
-                                    <label for="red" class="radio">Red</label>
-                                </div>
-                                <div class="grey">
-                                    <input type="radio" value="grey" id="grey" name="color" required />
-                                    <label for="grey" class="radio">Grey</label>
-                                </div>
-                            </div>
-                        </div><br>
-
-
-                        <div id="input-size" class="input">
-                            <label>
-                                <div id="size">Size: Choose...</div>
-                            </label>
-                            <div class="size">
-                                <div class="small">
-                                    <input type="radio" value="small" id="small" name="size" required />
-                                    <label for="small" class="radio">Small S</label>
-                                </div>
-                                <div class="medium">
-                                    <input type="radio" value="medium" id="medium" name="size" required />
-                                    <label for="medium" class="radio">Medium M</label>
-                                </div>
-                                <div class="large">
-                                    <input type="radio" value="large" id="large" name="size" required />
-                                    <label for="large" class="radio">Large L</label>
-                                </div>
-                            </div>
-                        </div>
-                        <button id="submit-button" type="submit" disabled>Choose A Size</button>
-                    </fieldset>
-
-                </form>
 
 
 
