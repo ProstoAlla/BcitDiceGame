@@ -33,13 +33,15 @@ const arrayOfEmotions = [
     { name: "shy", hint: "A _____ person is nervous and uncomfortable in the company of other people." }
 ];
 const stringOfLetters = "abcdefghijklmnopqrstuvwxyz";
-const maxWrongAnswers = 6;
+const MAX_WRONG_ANSWERS = 6;
 
 class GameState {
     constructor(randomEmotionObject) {
         this.guessedLetters = []; 
         this.randomEmotionObject = randomEmotionObject;
         this.numberOfMistakes = 0;
+        this.isWinner = false;
+        this.isGameEnd = false;
     }
 
     increaseNumberOfMistakes() {
@@ -64,6 +66,22 @@ class GameState {
 
     getGuessedLetters() {
         return this.guessedLetters;
+    }
+
+    setWinner(isWinner) {
+        this.isWinner = isWinner;
+    }
+
+    getIsWinner() {
+        return this.isWinner;
+    }
+
+    setGameEnd(gameEnd) {
+        this.isGameEnd = gameEnd;
+    }
+
+    getIsGameEnd() {
+        return this.isGameEnd;
     }
 }
 

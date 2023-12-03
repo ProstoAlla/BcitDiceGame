@@ -35,12 +35,34 @@
             <section id="main-wrapper">
 
                 <section id="hangman-pictures-letters-wrapper">
+                    <section id="wrong-numbers-section">
+                        <span style="size: 15px;">Wrong guesses:</span><span id="wrong-number-id"></span>
+                    </section>
+                    <section id="modal-dialog">
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p id="game-end-text">Some text in the Modal..</p>
+                                <p id="answer-word-id"></p>
+                                <img id="answer-image-id" alt="answer image" src="images/angry.jpeg"/>    
+                            </div>
+                        
+                        </div>
+                    </section>
                     <section id="hangman-pictures-wrapper">
                         <img id="hangman-image" src="images/image0.jpeg "
                             alt="hangman" width="250" height="300">
                     </section>
                     <section id="hangman-word-section">
                     </section>
+                    <div class="tooltip">Hover over to see the hint
+                        <span class="tooltiptext">
+                            <div id="hint-id"></div>
+                        </span>
+                    </div>
                     <section id="letter-buttons-wrapper">
                     </section>
                     <section id="hangman-reset-section">
