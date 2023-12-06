@@ -83,7 +83,7 @@ function showEndGameMessage(isWinner) {
     document.getElementById('game-end-text').innerHTML = `<p id="game-end-text">${messageText}</p>`;
     document.getElementById('answer-word-id').innerHTML = `<p id="answer-word-id">Correct answer is ${currentGameState.getRandomName()}.</p>`;
     document.getElementById('answer-image-id').src = `images/${currentGameState.getRandomName()}.jpeg`;
-    modal.style.display = "block";
+    modalAnswer.fadeIn("slow");
 }
 
 function resetGame() {
@@ -95,18 +95,33 @@ function resetGame() {
     document.getElementById("hangman-image").src=`images/image${currentGameState.getNumberOfMistakes()}.jpeg`;
 }
 
-var modal = document.getElementById("myModal");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var modalAnswer = $("#modal-answer");
+var modalGameInstruction = $("#modal-game-instruction");
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
+$(".close").eq(0).click(function () {
+    if (modalAnswer.is(":visible")) {
+        modalAnswer.fadeOut("slow");
+    }
+});
+
+// When the user clicks on <span> (x), close the modal
+$(".close").eq(1).click(function () {
+    if (modalGameInstruction.is(":visible")) {
+        modalGameInstruction.fadeOut(2000);
+    }
+});
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+
+$(window).click(function(e) {
+    if (e.target == modalAnswer[0]) {
+        modalAnswer.fadeOut("slow");
+    } else if (e.target == modalGameInstruction[0]) {
+        modalGameInstruction.fadeOut(2000);
     }
+});
+
+function showGameInstructions() {
+    modalGameInstruction.fadeIn(2000);
 }
